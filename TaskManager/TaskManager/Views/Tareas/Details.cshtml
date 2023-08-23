@@ -2,12 +2,12 @@
 
 @{
     ViewData["Title"] = "Details";
+    Layout = null;
 }
 
-<h1>Details</h1>
 
 <div>
-    <h4>Tarea</h4>
+    
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -35,8 +35,10 @@
             @Html.DisplayFor(model => model.Completada)
         </dd>
     </dl>
+    <hr />
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+<div>   
+    <a onclick="showInPopup('@Url.Action("Edit", "Tareas", new { id = Model?.Id }, Context.Request.Scheme)' ,
+                    'Actualizar Tarea')" class="btn btn-outline-warning">Editar</a>
+    <a asp-action="Index" class=" btn btn-outline-success">Cancelar</a>
 </div>

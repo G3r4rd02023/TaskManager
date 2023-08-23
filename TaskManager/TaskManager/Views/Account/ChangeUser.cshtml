@@ -1,0 +1,23 @@
+﻿@model TaskManager.Models.EditUserViewModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h4> Editar Usuario</h4>
+<hr />
+<div class="row">
+    <div class="col-md-8">
+        <form asp-action="ChangeUser" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            
+            <partial name="_User" />
+            <div class="form-group mt-2">
+                <input type="submit" value="Guardar" class="btn btn-outline-primary" />
+                <a asp-action="ChangePassword" class="btn btn-outline-secondary">Cambiar Contraseña</a>
+            </div>
+        </form>
+    </div>
+  
+</div>
+

@@ -12,9 +12,9 @@ namespace TaskManager.Data.Entities
         [Required(ErrorMessage = "El campo {0} es obligatorio.")]
         public string? Titulo { get; set; }
 
-        [Display(Name = "Descripcion")]
-        [MaxLength(200, ErrorMessage = "El campo {0} debe tener máximo {1} caractéres.")]
-        [Required(ErrorMessage = "El campo {0} es obligatorio.")]
+        [DataType(DataType.MultilineText)]
+        [Display(Name = "Descripción")]
+        [MaxLength(500, ErrorMessage = "El campo {0} debe tener máximo {1} caractéres.")]
         public string? Descripcion { get; set; }
 
         [Display(Name = "Fecha de Vencimiento")]
