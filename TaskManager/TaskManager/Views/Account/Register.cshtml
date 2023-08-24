@@ -2,43 +2,56 @@
 @{
     ViewData["Title"] = "Register";
 }
-
-<h4>Registrar Usuario</h4>
-<hr />
-<div class="row">
-    <div class="col-md-12">
-        <form asp-action="Register" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <input type="hidden" asp-for="UserType" />
-            
-            <div class="form-group">
-                <label asp-for="Username" class="control-label"></label>
-                <input asp-for="Username" class="form-control" />
-                <span asp-validation-for="Username" class="text-danger"></span>                
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label asp-for="Password" class="control-label"></label>
-                        <input asp-for="Password" class="form-control" />
-                        <span asp-validation-for="Password" class="text-danger"></span>
-                    </div>
+<div class="row justify-content-center">
+    <div class="col-md-6">
+         <form asp-action="Register" enctype="multipart/form-data">
+            <div class="card">
+            <div class="card-body">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <input type="hidden" asp-for="UserType" />
+                <h3 class="card-title">Formulario de Registro</h3>
+                <!-- Tu formulario aquí -->
+                <div class="form-group">
+                    <label asp-for="FirstName" class="control-label"></label>
+                    <input asp-for="FirstName" class="form-control" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
                 </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label asp-for="PasswordConfirm" class="control-label"></label>
-                        <input asp-for="PasswordConfirm" class="form-control" />
-                        <span asp-validation-for="PasswordConfirm" class="text-danger"></span>
-                    </div>
+                <div class="form-group">
+                    <label asp-for="LastName" class="control-label"></label>
+                    <input asp-for="LastName" class="form-control" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
                 </div>
+                <div class="form-group">
+                    <label asp-for="PhoneNumber" class="control-label"></label>
+                    <input asp-for="PhoneNumber" class="form-control" />
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Username" class="control-label"></label>
+                    <input asp-for="Username" class="form-control" />
+                    <span asp-validation-for="Username" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password" class="control-label"></label>
+                    <input asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PasswordConfirm" class="control-label"></label>
+                    <input asp-for="PasswordConfirm" class="form-control" />
+                    <span asp-validation-for="PasswordConfirm" class="text-danger"></span>
+                </div>
+                <div class="form-group mt-2">
+                    <input type="submit" value="Registrar" class="btn btn-outline-primary" />
+                </div>      
             </div>
-            <partial name="_User" />
-            <div class="form-group mt-2">
-                <input type="submit" value="Registrar" class="btn btn-outline-primary" />
             </div>
         </form>
     </div>
 </div>
+
+
+
 
 
