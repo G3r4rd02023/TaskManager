@@ -55,7 +55,8 @@
                                     <a onclick="showInPopup('@Url.Action("Details", "Tareas", new { id = item.Id }, Context.Request.Scheme)' ,
                     'Ver Tarea')" class="btn btn-outline-info">Ver</a>
                                     <button data-id="@item.Id" class="btn btn-outline-danger deleteItem" data-bs-toggle="modal"
-                                            data-bs-target="#deleteDialog">Borrar
+                                            data-bs-target="#deleteDialog">
+                                        Borrar
                                     </button>
                                 </td>
                             </tr>
@@ -84,8 +85,8 @@
                     "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
                 },
                 "aLengthMenu": [
-                    [5, 10, 20, 50, -1],
-                    [5, 10, 20, 50, "Todos"]
+                    [10, 25, 50, 100, -1],
+                    [10, 25, 50, 100, "Todos"]
                 ]
             });
         });

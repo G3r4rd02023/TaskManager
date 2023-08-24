@@ -25,6 +25,8 @@ namespace TaskManager.Data.Entities
         [Display(Name = "Tarea Completada")]
         public bool Completada { get; set; }
 
+        public Usuario? Usuario { get; set; }
+
 
     }
 }

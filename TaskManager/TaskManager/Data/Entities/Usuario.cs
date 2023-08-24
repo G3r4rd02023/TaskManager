@@ -22,6 +22,8 @@ namespace TaskManager.Data.Entities
         [Display(Name = "Usuario")]
         public string FullName => $"{FirstName} {LastName}";
 
+        public ICollection<Tarea> Tareas { get; set; }
+
 
     }
 }

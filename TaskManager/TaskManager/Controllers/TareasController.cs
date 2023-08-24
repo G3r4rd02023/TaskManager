@@ -1,25 +1,41 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TaskManager.Data;
 using TaskManager.Data.Entities;
+using TaskManager.Helpers;
 
 namespace TaskManager.Controllers
 {
+    [Authorize]
     public class TareasController : Controller
     {
         private readonly DataContext _context;
+        private readonly IUserHelper _userHelper;
 
-        public TareasController(DataContext context)
+        public TareasController(DataContext context, IUserHelper userHelper)
         {
             _context = context;
+            _userHelper = userHelper;
         }
 
 
         public async Task<IActionResult> Index()
-        {
-            return View(await _context.Tareas.ToListAsync());
+        {                    
+             var tareas = await _context.Tareas
+             .ToListAsync();
+             return View(tareas);                    
         }
 
+        public async Task<IActionResult> MyTasks()
+        {
+            var tareasUsuario = await _context.Tareas
+                .Include(t => t.Usuario)
+                .Where(t => t.Usuario.UserName == User.Identity.Name)
+                .ToListAsync();
+
+            return View(tareasUsuario);
+        }
 
         public async Task<IActionResult> Details(int? id)
         {
@@ -29,6 +45,7 @@ namespace TaskManager.Controllers
             }
 
             var tarea = await _context.Tareas
+                .Include(t => t.Usuario)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (tarea == null)
             {
@@ -49,11 +66,22 @@ namespace TaskManager.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Tarea tarea)
         {
+            Usuario user = await _userHelper.GetUserAsync(User.Identity.Name);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
             if (ModelState.IsValid)
             {
+                tarea.Usuario = user;
                 _context.Add(tarea);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                if (user.UserType.Equals("Admin"))
+                {
+                   return RedirectToAction(nameof(Index));
+                }
+                return RedirectToAction(nameof(MyTasks));
             }
             return View(tarea);
         }
